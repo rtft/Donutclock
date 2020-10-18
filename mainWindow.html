@@ -1,18 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="clock.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="clock.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-
-
+        
+        <link rel="stylesheet" type="text/css" href="node_modules/mtr-datepicker/dist/mtr-datepicker.min.css">
+        <link rel="stylesheet" type="text/css" href="node_modules/mtr-datepicker/dist/mtr-datepicker.default-theme.min.css">
+        
+        <script type="text/javascript" src="node_modules/mtr-datepicker/dist/mtr-datepicker.min.js"></script>
 
     <title>Alarm Clock</title>
 </head>
 <body>
     <div id="clock"></div>
-    
+
+
+    <div class="container">
+        <div id="disable-datepicker-mtr-datepicker"></div>
+
+    </div>
+
+
+    <script>
+    var config = {
+        target: 'disable-datepicker-mtr-datepicker',
+        datepicker: false
+    };
+    var myDatepicker = new MtrDatepicker(config);
+    </script>
 
 
     
