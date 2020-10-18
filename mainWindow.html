@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="clock.css">
         <link rel="stylesheet" href="main.css">
         <link rel="stylesheet" href="fixed.css">
+        <link rel="stylesheet" href="squares.css">
         <link rel="stylesheet" href="alarmbutton.css">
         <link rel="stylesheet" href="buttonSelection.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -48,11 +49,13 @@
     <div class="d-flex justify-content-center">
         <button onclick="setAlarm(this);" type="button" class="btn btn-primary" id = "alarmbutton">Set Alarm</button>
     </div>
+    <br>
     <div class="d-flex justify-content-center">
         <div id="alarmOptions" style="display:none;">
             <!-- <button onclick="cancelAlarm();" type="button" class="btn btn-secondary" >Cancel Alarm</button> -->
             <button onclick="stopAlarm();" type="button" class="btn btn-danger" >Stop Alarm</button>
     </div>
+    <br>
 
     
 
@@ -75,14 +78,40 @@
             </ul>
         </div>
     </div> -->
+<!-- 
+    <div class="box">
+        <div>
+    </div>
+    <div>
+    </div>
+    <div>
+    </div>
+    <div>
+    </div>
+    <div>
+    </div>
+    <div>
+    </div>
+    <div>
+    </div>
+    <div>
+    </div>
+    <div>
+    </div>
+    <div>
+    </div>
+    </div> -->
+    <!-- <h2>
 
-
+    </h2> -->
 
 
     
 
 </body>
     <script src="galileo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <script>
         //Time picker docs
         //http://mtrdesign.github.io/mtr-datepicker/docs.html#api-events-on-change
@@ -144,8 +173,12 @@
             // document.getElementById()
             document.getElementById('alarmOptions').style.display = '';
 
+
+            //
+
             //Set timeout for 5 minutes, then fire a transaction
-            timeOut = setTimeout(payCharity,300000);
+            // timeOut = setTimeout(payCharity,300000);
+            timeOut = setTimeout(payCharity,10000);
 
         }
 
@@ -169,8 +202,20 @@
 
         }
         function payCharity(){
-
-
+            Swal.fire({
+                icon: 'success',
+                title: 'Payment has been sent to American Red Cross',
+                showConfirmButton: false,
+                timer: 3000
+            })
+            var refreshToken = loginToGalileo();
+            
+            // console.log("hti here" + refreshToken);
+            // var accessToken = refreshAccess(refreshToken);
+            // console.log(accessToken);
+            // var accounts = listAccounts(accessToken, 5063);
+            // console.log(accounts);
+            // executeTransaction(5063, accounts[0], "american_red_cross", 2);
         }
 
     

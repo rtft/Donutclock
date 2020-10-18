@@ -4,10 +4,13 @@ var refresh_token;
 var cardHolder_id;
 var account_id;
 
+var accounts;
+
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var xhr = new XMLHttpRequest();
 
 function loginToGalileo(){
+    console.log("Loging into Galileo")
     const data = null;
 
     xhr = new XMLHttpRequest();
@@ -17,9 +20,16 @@ function loginToGalileo(){
 
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === this.DONE) {
+            console.log(this.responseText);
             var response = JSON.parse(this.responseText);
+            // console.log(response);
             access_token = response.access_token;
+            // console.log(access_token);
             refresh_token = response.refresh_token;
+            // console.log(refresh_token);
+
+            refreshAccess(refresh_token);
+            return refresh_token;
         }
       }
     );
@@ -28,9 +38,10 @@ function loginToGalileo(){
     xhr.setRequestHeader("content-type", "application/json");
 
     xhr.send(data);
+    console.log("finished logging in")
 }
 
-function refreshAccess(){
+function refreshAccess(refreshToken){
     const data = null;
 
     xhr = new XMLHttpRequest();
@@ -39,11 +50,14 @@ function refreshAccess(){
       if (this.readyState === this.DONE) {
             var response = JSON.parse(this.responseText);
             access_token = response.access_token;
+
+            accounts = listAccounts(access_token, 5063);
+            return access_token;
       }
     });
     xhr.open("POST", "https://sandbox.galileo-ft.com/instant/v1/refresh");
 
-    xhr.setRequestHeader("Authorization", "Bearer " + refresh_token);
+    xhr.setRequestHeader("Authorization", "Bearer " + refreshToken);
 
 
     xhr.send(data);
@@ -141,14 +155,10 @@ function fundAccount(destinationAccountID, sourceAccountID, amount){
         "source_account_id": sourceAccountID
       });
       
-      const xhr = new XMLHttpRequest();
-      var accounts;
+      xhr = new XMLHttpRequest();
+      
       xhr.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
-          for (i in response.accounts){
-            console.log(i)
-            accounts = response.accounts[i];
-          }
           xhr = null;
           return accounts;
         }
@@ -162,21 +172,32 @@ function fundAccount(destinationAccountID, sourceAccountID, amount){
       xhr.send(data);
 }
 
-function listAccounts(cardholderID){
+function listAccounts(accessToken, cardholderID){
     const data = null;
 
   const xhr = new XMLHttpRequest();
 
+  var accounts;
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === this.DONE) {
       var response = JSON.parse(this.responseText);
-      return 
+      
+      
+      for (i in response.accounts){
+        console.log(i)
+        accounts[i] = response.accounts[i];
+      }
+      console.log(accounts);
+      executeTransaction(5063, accounts[0], "american_red_cross", 2);
+      return accounts;
     }
   });
-
+  
   xhr.open("GET", "https://sandbox.galileo-ft.com/instant/v1/cardholders/cardholder_id/accounts");
   xhr.setRequestHeader("accept", "*/*");
-
+  xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
+  
+  refreshAccess(refresh_token);
   xhr.send(data);
 }
 
@@ -186,7 +207,7 @@ function executeTransaction(cardholderID, accountID, merchantName, amount){
         "merchant_name": merchantName
       });
       
-      const xhr = new XMLHttpRequest();
+      xhr = new XMLHttpRequest();
       
       xhr.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
