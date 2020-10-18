@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="clock.css">
         <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="alarmbutton.css">
         <link rel="stylesheet" href="buttonSelection.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://unpkg.com/balloon-css/balloon.min.css">
@@ -52,6 +53,13 @@
         </form>
     </div>
 
+    <div class="container">
+        <div class=Alarmbutton>
+            <button type="button" class="btn btn-primary">Primary</button>
+
+        </div>
+
+    </div>
 
     
 
@@ -78,15 +86,41 @@
 
 </body>
     <script>
+        //Time picker docs
+        //http://mtrdesign.github.io/mtr-datepicker/docs.html#api-events-on-change
+
         var config = {
             target: 'disable-datepicker-mtr-datepicker',
             datepicker: false
         };
         var myDatepicker = new MtrDatepicker(config);
-        // var output = myDatepicker.toTimeString();
+        var output = myDatepicker.toLocaleTimeString();
     
-        // console.log(output);
-    
+        console.log(output);
+
+        var alarmSound = new Audio();
+        alarmSound.src = 'Alarm.mp3';
+
+        function setAlarm(){
+            var output = myDatepicker.toTimeString();
+            var currentTime = new Date();
+
+            // var msDiff = ;
+
+            //Check difference in time
+        }
+        
+        function initializeAlarm(){
+            alarmSound.play();
+        }
+
+        function stopAlarm(){
+
+        }
+        function cancelAlarm(){
+
+        }
+
     
         </script>
 
