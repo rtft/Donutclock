@@ -25,7 +25,7 @@ app.on('ready', function(){
     const mainMenu = Menu.buildFromTemplate(MainMenuTemplate);
     
 
-    // mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
     mainWindow.on('closed', function(){
         mainWindow = null;

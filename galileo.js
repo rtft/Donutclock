@@ -8,24 +8,19 @@ var xhr = new XMLHttpRequest();
 function loginToGalileo(){
     const data = null;
 
-    const xhr = new XMLHttpRequest();
+    xhr = new XMLHttpRequest();
 
-    const GalileoAPIUsername = "";
-    const GalileoAPIPassword = "";
+    const GalileoAPIUsername = "CgZ1b6oVWOGP";
+    const GalileoAPIPassword = "2nN3YeCt52DGe9wf0Xa2";
 
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === this.DONE) {
-        if (this.status == 200){
             var response = JSON.parse(this.responseText);
             access_token = response.access_token;
             refresh_token = response.refresh_token;
-            console.log(refresh_token)
-        }else{
-            console.log(this.responseText);
         }
-        xhr.abort();
       }
-    });
+    );
 
     xhr.open("POST", "https://sandbox.galileo-ft.com/instant/v1/login?username=" + GalileoAPIUsername + "&password=" + GalileoAPIPassword);
     xhr.setRequestHeader("content-type", "application/json");
@@ -36,23 +31,18 @@ function loginToGalileo(){
 function refreshAccess(){
     const data = null;
 
-    const xhr = new XMLHttpRequest();
+    xhr = new XMLHttpRequest();
 
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === this.DONE) {
-          if (this.status == 200){
             var response = JSON.parse(this.responseText);
             access_token = response.access_token;
-          } else{
-            console.log(this.responseText);
-          }
-          xhr.abort();
       }
     });
+    xhr.open("POST", "https://sandbox.galileo-ft.com/instant/v1/refresh");
 
     xhr.setRequestHeader("Authorization", "Bearer " + refresh_token);
 
-    xhr.open("POST", "https://sandbox.galileo-ft.com/instant/v1/refresh");
 
     xhr.send(data);
 }
@@ -60,7 +50,7 @@ function refreshAccess(){
 function getAgreements(productID) {
     const data = null;
 
-    const xhr = new XMLHttpRequest();
+    xhr = new XMLHttpRequest();
 
     refreshAccess()
 
@@ -69,7 +59,9 @@ function getAgreements(productID) {
         // console.log(this.responseText);
         var agreements;
         var response = JSON.parse(this.responseText)
+        console.log("hit here")
         for (i in response.agreements){
+            console.log(i)
             agreements = response.agreements[i];
         }
         xhr = null;
