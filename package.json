@@ -1,0 +1,22 @@
+{
+  "name": "donutclock",
+  "version": "1.0.0",
+  "description": "A clock that is garunteed to wake you up",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rtft/Donutclock.git"
+  },
+  "author": "rftf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rtft/Donutclock/issues"
+  },
+  "homepage": "https://github.com/rtft/Donutclock#readme",
+  "dependencies": {
+    "electron": "^10.1.3"
+  }
+}
