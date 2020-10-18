@@ -10,8 +10,8 @@ function loginToGalileo(){
 
     const xhr = new XMLHttpRequest();
 
-    const GalileoAPIUsername = "CgZ1b6oVWOGP";
-    const GalileoAPIPassword = "2nN3YeCt52DGe9wf0Xa2";
+    const GalileoAPIUsername = "";
+    const GalileoAPIPassword = "";
 
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === this.DONE) {
@@ -137,8 +137,55 @@ function createCardholder(first_name, last_name, email, password, DOB, id_string
       xhr.open("POST", "https://sandbox.galileo-ft.com/instant/v1/cardholders");
       xhr.setRequestHeader("accept", "*/*");
       xhr.setRequestHeader("content-type", "application/json");
-      xhr.setRequestHeader("Authorization", "Bearer " + aaccess_token);
+      xhr.setRequestHeader("Authorization", "Bearer " + access_token);
+      xhr.send(data);
+}
 
+function fundAccount(destinationAccountID, sourceAccountID, amount){
+    const data = JSON.stringify({
+        "amount": amount,
+        "destination_account_id": destinationAccountID,
+        "source_account_id": sourceAccountID
+      });
+      
+      const xhr = new XMLHttpRequest();
+      
+      xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+            if (this.status == 201){
+
+            }else{
+                console.log(this.responseText);
+            }
+        }
+      });
+      
+      xhr.open("POST", "https://sandbox.galileo-ft.com/instant/v1/transfers");
+      xhr.setRequestHeader("accept", "*/*");
+      xhr.setRequestHeader("content-type", "application/json");
+      xhr.setRequestHeader("Authorization", "Bearer " + access_token);
+      
+      xhr.send(data);
+}
+
+function executeTransaction(cardholderID, accountID, merchantName, amount){
+    const data = JSON.stringify({
+        "amount": amount,
+        "merchant_name": merchantName
+      });
+      
+      const xhr = new XMLHttpRequest();
+      
+      xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+          console.log(this.responseText);
+        }
+      });
+      
+      xhr.open("POST", "https://sandbox.galileo-ft.com/instant/v1/cardholders/" + cardholderID + "/accounts/" + accountID + "/transactions");
+      xhr.setRequestHeader("accept", "*/*");
+      xhr.setRequestHeader("content-type", "application/json");
+      xhr.setRequestHeader("Authorization", "Bearer " + access_token);
       
       xhr.send(data);
 }

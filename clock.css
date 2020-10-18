@@ -1,11 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Orbitron');
 
 body {
   background-color: #121212;
 }
 
 #clock {
-  /* font-family: 'Orbitron', sans-serif; */
   color: rgb(58, 58, 58);
   font-size: 56px;
   text-align: center;
