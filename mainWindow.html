@@ -103,21 +103,42 @@
 
         function setAlarm(){
             var output = myDatepicker.toTimeString();
-            var currentTime = new Date();
+            //Output needs to be converted probably to something that can be subtracted
 
-            // var msDiff = ;
+            var msDiff = output - (new Date().getTime());
 
             //Check difference in time
+            if(msDiff < 0){
+                alert('Can not set an alarm backwards in time');
+                return;
+            }
+
+            setTimeout(initializeAlarm, msDiff);
         }
         
         function initializeAlarm(){
             alarmSound.play();
+            //Modify buttons
+            // document.getElementById()
+
+            //Set timeout for 5 minutes, then fire a transaction
+
         }
 
         function stopAlarm(){
+            alarmSound.pause();
+            alarmSound.currentTime = 0;
+            
 
+            //Hide the button
+
+            //then also cancel
+            cancelAlarm(document.getElementById('Alarmbutton'))
         }
-        function cancelAlarm(){
+        function cancelAlarm(button){
+            button.innerText = 'Set Alarm';
+            button.setAttribute('onclick',' setAlarm(this);');
+
 
         }
 
