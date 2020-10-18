@@ -32,7 +32,7 @@
     <div class="d-flex justify-content-center">
         <form>
             <div class="button-selector">
-                <input id="charity1" type="radio" name="charity" aria-label="Donate to charity1" data-balloon-pos="down" value="charity1" />
+    
                 <label class="charityItem charity1" for="charity1"></label>
                 <input id="charity2" type="radio" name="charity" aria-label="Donate to charity2" data-balloon-pos="down" value="charity2" />
                 <label class="charityItem charity2"for="charity2"></label>
@@ -50,7 +50,7 @@
     </div>
     <div class="d-flex justify-content-center">
         <div id="alarmOptions" style="display:none;">
-            <button onclick="cancelAlarm();" type="button" class="btn btn-secondary" >Cancel Alarm</button>
+            <!-- <button onclick="cancelAlarm();" type="button" class="btn btn-secondary" >Cancel Alarm</button> -->
             <button onclick="stopAlarm();" type="button" class="btn btn-danger" >Stop Alarm</button>
     </div>
 
@@ -58,9 +58,10 @@
 
     <!-- Stolen from https://codepen.io/mohaiman/pen/MQqMyo -->
 <!-- 
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center" 
         <div class="area">
             <ul class="circles">
+                    <li></li>
                     <li></li>
                     <li></li>
                     <li></li>
@@ -96,7 +97,7 @@
             }
         };
         var myDatepicker = new MtrDatepicker(config);
-        var output = myDatepicker.toLocaleTimeString();
+        // var output = myDatepicker.toLocaleTimeString();
 
         // var output2 = myDatepicker.toISOString();
 
@@ -116,7 +117,7 @@
 
         var timeOut;
 
-        function setAlarm(){
+        function setAlarm(button){
             var output = myDatepicker.toISOString();
             //Output needs to be converted probably to something that can be subtracted
 
@@ -132,6 +133,9 @@
 
             setTimeout(initializeAlarm, msDiff);
             console.log("Set Alarm clicked");
+
+            button.innerText = 'Cancel Alarm';
+            button.setAttribute('onclick', 'cancelAlarm(this);');
         }
         
         function initializeAlarm(){
@@ -141,7 +145,7 @@
             document.getElementById('alarmOptions').style.display = '';
 
             //Set timeout for 5 minutes, then fire a transaction
-            timeOut = setTimeout(executeTransaction,300000);
+            timeOut = setTimeout(payCharity,300000);
 
         }
 
@@ -153,7 +157,8 @@
             //Hide the button
 
             //then also cancel
-            cancelAlarm(document.getElementById('alarmOptions')).style.display = 'none'
+            document.getElementById('alarmOptions').style.display = 'none';
+            cancelAlarm(document.getElementById('alarmbutton'));
         }
         function cancelAlarm(button){
             clearTimeout(timeOut);
@@ -163,7 +168,8 @@
 
 
         }
-        function executeTransaction(){
+        function payCharity(){
+
 
         }
 
