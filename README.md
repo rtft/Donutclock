@@ -13,6 +13,8 @@ Curtis Lin & Jonathan Fairbanks & Jeff Gay
  # Author Notes: 
  N/A
 
+This requires electron to run.
+
  ---
  
  
