@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/rtft/Donutclock#readme",
   "dependencies": {
-    "electron": "^10.1.3"
+    "electron": "^10.1.3",
+    "xmlhttprequest": "^1.8.0"
   }
 }
