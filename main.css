@@ -1,9 +1,25 @@
 #disable-datepicker-mtr-datepicker{
     align-content: center;
-    background-color: #292929;
+    /* background-color: #292929; */
+    background-color: transparent;
     justify-content: center;
     z-index:99;
     position: absolute;
+    /* top: 50%;*/
+    left: 45%; 
+    margin-right: -50%;
+    margin: -25px 0 0 -25px; /* apply negative top and left margins to truly center the element */
+}
+
+#centerFlex{
+    display: flex;
+    align-items: center;
+    justify-content: center 
+}
+
+.container{
+    justify-content: center;
+    
 }
 
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');

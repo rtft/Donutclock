@@ -5,10 +5,13 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="clock.css">
         <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="buttonSelection.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://unpkg.com/balloon-css/balloon.min.css">
 
         
         <link rel="stylesheet" type="text/css" href="node_modules/mtr-datepicker/dist/mtr-datepicker.min.css">
+
         <link rel="stylesheet" type="text/css" href="node_modules/mtr-datepicker/dist/mtr-datepicker.default-theme.min.css">
         
         <script type="text/javascript" src="node_modules/mtr-datepicker/dist/mtr-datepicker.min.js"></script>
@@ -19,13 +22,40 @@
     <div id="clock"></div>
 
     <!--  -->
-    <div class="container">
-        <div id="disable-datepicker-mtr-datepicker"></div>
 
+
+    <div class="centerFlex">
+        <div id="disable-datepicker-mtr-datepicker"></div>
+    </div>
+
+
+    <!-- <div class="container"> -->
+        <!-- <div id="disable-datepicker-mtr-datepicker"></div> -->
+    <!-- </div> -->
+
+    <br>
+
+    <div class="container">
+        <form>
+            <div class="button-selector">
+                <input id="charity1" type="radio" name="charity" aria-label="Donate to charity1" data-balloon-pos="down" value="charity1" />
+                <label class="charityItem charity1" for="charity1"></label>
+                <input id="charity2" type="radio" name="charity" aria-label="Donate to charity2" data-balloon-pos="down" value="charity2" />
+                <label class="charityItem charity2"for="charity2"></label>
+                <input id="charity3" type="radio" name="charity" aria-label="Donate to charity3" data-balloon-pos="down" value="charity3" />
+                <label class="charityItem charity3"for="charity3"></label>
+                <input id="charity4" type="radio" name="charity" aria-label="Donate to charity4" data-balloon-pos="down" value="charity4" />
+                <label class="charityItem charity4"for="charity4"></label>
+                <input id="charity5" type="radio" name="charity" aria-label="Donate to charity5" data-balloon-pos="down" value="charity5" />
+                <label class="charityItem charity5"for="charity5"></label>
+            </div>
+        </form>
     </div>
 
 
     
+
+
     <!-- Stolen from https://codepen.io/mohaiman/pen/MQqMyo -->
     <div class="area">
         <ul class="circles">
@@ -43,26 +73,30 @@
     </div>
 
 
-    <script>
-    var config = {
-        target: 'disable-datepicker-mtr-datepicker',
-        datepicker: false
-    };
-    var myDatepicker = new MtrDatepicker(config);
-
-
-    </script>
-
 
     
 
 </body>
+    <script>
+        var config = {
+            target: 'disable-datepicker-mtr-datepicker',
+            datepicker: false
+        };
+        var myDatepicker = new MtrDatepicker(config);
+        // var output = myDatepicker.toTimeString();
+    
+        // console.log(output);
+    
+    
+        </script>
 
 
 
 
 <script src="clock.js"></script>
+<script src="galileo.js"></script>
 <!-- <script src="timepicker.js"></script> -->
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

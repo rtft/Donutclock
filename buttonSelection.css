@@ -1,0 +1,48 @@
+.button-selector{
+    position: absolute;
+    left: 30%;
+    top: 30%;
+    z-index:99;
+    /* margin: -25px 0 0 -25px; */
+    margin-right: -30%;
+}
+
+.button-selector input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+
+}
+.charity1{background-image:url(icon1.png);}
+.charity2{background-image:url(icon1.png);}
+.charity3{background-image:url(icon1.png);}
+.charity4{background-image:url(icon1.png);}
+.charity5{background-image:url(icon1.png);}
+
+.button-selector input:active +.charityItem{opacity: .9;}
+.button-selector input:checked +.charityItem{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.charityItem{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:100px;height:100px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.charityItem:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/* Extras */
