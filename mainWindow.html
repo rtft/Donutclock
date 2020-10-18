@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="clock.css">
         <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="fixed.css">
         <link rel="stylesheet" href="alarmbutton.css">
         <link rel="stylesheet" href="buttonSelection.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -22,21 +23,13 @@
 <body>
     <div id="clock"></div>
 
-    <!--  -->
 
-
-    <div class="centerFlex">
+    <div class="d-flex justify-content-center">
         <div id="disable-datepicker-mtr-datepicker"></div>
     </div>
 
 
-    <!-- <div class="container"> -->
-        <!-- <div id="disable-datepicker-mtr-datepicker"></div> -->
-    <!-- </div> -->
-
-    <br>
-
-    <div class="container">
+    <div class="d-flex justify-content-center">
         <form>
             <div class="button-selector">
                 <input id="charity1" type="radio" name="charity" aria-label="Donate to charity1" data-balloon-pos="down" value="charity1" />
@@ -52,60 +45,82 @@
             </div>
         </form>
     </div>
-
-    <div class="container">
-        <div class=Alarmbutton>
-            <button type="button" class="btn btn-primary">Primary</button>
-
-        </div>
-
+    <div class="d-flex justify-content-center">
+        <button onclick="setAlarm(this);" type="button" class="btn btn-primary" id = "alarmbutton">Set Alarm</button>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div id="alarmOptions" style="display:none;">
+            <button onclick="cancelAlarm();" type="button" class="btn btn-secondary" >Cancel Alarm</button>
+            <button onclick="stopAlarm();" type="button" class="btn btn-danger" >Stop Alarm</button>
     </div>
 
     
 
-
     <!-- Stolen from https://codepen.io/mohaiman/pen/MQqMyo -->
-    <div class="area">
-        <ul class="circles">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-        </ul>
-    </div>
+<!-- 
+    <div class="d-flex justify-content-center">
+        <div class="area">
+            <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+        </div>
+    </div> -->
+
 
 
 
     
 
 </body>
+    <script src="galileo.js"></script>
     <script>
         //Time picker docs
         //http://mtrdesign.github.io/mtr-datepicker/docs.html#api-events-on-change
 
         var config = {
             target: 'disable-datepicker-mtr-datepicker',
-            datepicker: false
+            datepicker: false,
+            minutes: {
+                min: 0,
+                max: 59,
+                step: 1
+            }
         };
         var myDatepicker = new MtrDatepicker(config);
         var output = myDatepicker.toLocaleTimeString();
+
+        // var output2 = myDatepicker.toISOString();
+
+        // console.log(output2);
+
+        // testTimeDateString = (new Date(output2));
+
     
-        console.log(output);
+        // console.log(output);
+
+        // console.log(testTimeDateString);
+
+        // console.log(testTimeDateString.getTime() - (new Date().getTime()));
 
         var alarmSound = new Audio();
         alarmSound.src = 'Alarm.mp3';
 
+        var timeOut;
+
         function setAlarm(){
-            var output = myDatepicker.toTimeString();
+            var output = myDatepicker.toISOString();
             //Output needs to be converted probably to something that can be subtracted
 
-            var msDiff = output - (new Date().getTime());
+            var msDiff = (new Date(output).getTime()) - (new Date().getTime());
 
             //Check difference in time
             if(msDiff < 0){
@@ -113,15 +128,20 @@
                 return;
             }
 
+            console.log(msDiff);
+
             setTimeout(initializeAlarm, msDiff);
+            console.log("Set Alarm clicked");
         }
         
         function initializeAlarm(){
             alarmSound.play();
             //Modify buttons
             // document.getElementById()
+            document.getElementById('alarmOptions').style.display = '';
 
             //Set timeout for 5 minutes, then fire a transaction
+            timeOut = setTimeout(executeTransaction,300000);
 
         }
 
@@ -133,12 +153,17 @@
             //Hide the button
 
             //then also cancel
-            cancelAlarm(document.getElementById('Alarmbutton'))
+            cancelAlarm(document.getElementById('alarmbutton')).style.display = 'none'
         }
         function cancelAlarm(button){
+            clearTimeout(timeOut);
+
             button.innerText = 'Set Alarm';
             button.setAttribute('onclick',' setAlarm(this);');
 
+
+        }
+        function executeTransaction(){
 
         }
 
@@ -149,7 +174,7 @@
 
 
 <script src="clock.js"></script>
-<script src="galileo.js"></script>
+
 <!-- <script src="timepicker.js"></script> -->
 
 
